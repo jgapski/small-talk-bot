@@ -1,10 +1,11 @@
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from operator import itemgetter 
+import sys
 
-def sentiment_analyzer_scores(map):
+def sentiment_analyzer_scores(sentence):
     var_beh = ""
     analyser = SentimentIntensityAnalyzer()
-    sentence = map.get("msg")
+    #sentence = map.get("msg")
     score = analyser.polarity_scores(sentence)
     #print("{:-<40} {}".format(sentence, str(score)))
     #print(sentence, str(score))
@@ -21,3 +22,9 @@ def sentiment_analyzer_scores(map):
         #print("Neutral") 
     return var_beh
 
+
+arguments = str(sys.argv)
+a_msg = arguments.replace("['src/python/messages_analysic.py', '", "")
+msg = a_msg.replace("']", "")
+
+print(sentiment_analyzer_scores(msg))
