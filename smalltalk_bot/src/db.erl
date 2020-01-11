@@ -26,7 +26,7 @@ add_msg(From, Msg) ->
     end.
 
 consists_ASAP(Msg) ->
-    Cmd = "python src/python/ASAP_detector.py " ++ binary_to_list(Msg),
+    Cmd = "python config/python/ASAP_detector.py " ++ binary_to_list(Msg),
     R = os:cmd(Cmd),
     logger:error("~p", [R]),
     R.
