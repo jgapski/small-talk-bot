@@ -1,3 +1,4 @@
 re>=3.7
 pyjokes==0.6.0
+strsimpy==0.1.3
 
