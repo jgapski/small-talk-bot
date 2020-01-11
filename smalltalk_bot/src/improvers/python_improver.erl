@@ -4,11 +4,11 @@
 
 -spec improve(map()) -> [binary()].
 improve(#{<<"msg">> := Msg}) ->
-        check_it(Msg).
+        [] ++
+        emotional_meaning(Msg).
 
-check_it(Msg) ->
-        Pat = "python src/python/messages_analysic.py " ++ binary_to_list(Msg),
-        R = os:cmd(Pat),
-        logger:error("~p", [R]),
-        R.
+emotional_meaning(Msg) ->
+        Cmd = "python src/python/messages_analysic.py " ++ binary_to_list(Msg),
+        R = os:cmd(Cmd),
+        [list_to_binary(R)].
 
