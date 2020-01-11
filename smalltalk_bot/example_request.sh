@@ -6,7 +6,7 @@ http://localhost:8080
 
 curl  -X POST \
 -d '{"from":"Vlad", "channel_name":"random", "msg":"Yes, you are awsome"}' \
-http://localhost:80804
+http://localhost:8080
 
 curl  -X POST \
 -d '{"from":"Vlad", "channel_name":"random", "msg":"No, fuck"}' \
