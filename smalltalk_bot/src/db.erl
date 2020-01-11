@@ -17,16 +17,25 @@ start_link() ->
 			  []).
 
 add_msg(From, Msg) ->
-    Ref = erlang:make_ref(),
-    NewMsg = #msg{from = From, content = Msg, ref = Ref},
-    gen_server:call(?MODULE, {add, NewMsg}).
+    case consists_ASAP(Msg) of
+        "0\n" -> [];
+        _ ->
+            Ref = erlang:make_ref(),
+            NewMsg = #msg{from = From, content = Msg, ref = Ref},
+            gen_server:call(?MODULE, {add, NewMsg})
+    end.
+
+consists_ASAP(Msg) ->
+    Cmd = "python src/python/ASAP_detector.py " ++ binary_to_list(Msg),
+    R = os:cmd(Cmd),
+    logger:error("~p", [R]),
+    R.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 init(_Args) -> {ok, []}.
 
-handle_call({add, Msg = #msg{ref = Ref, from = From}}, _From, State) ->
-    % TODO implement counting ASAPs
+handle_call({add, Msg = #msg{ref = Ref}}, _From, State) ->
     logger:error("Msg ~p added, State is ~p", [Msg, State]),
     erlang:send_after(?ASAP_TIMEOUT, self(), {del, Ref}),
     {reply, [], [Msg | State]}.
