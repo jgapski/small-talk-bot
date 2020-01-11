@@ -3,6 +3,6 @@
 -export([improve/1]).
 
 -spec improve(map()) -> [binary()].
-improve(_) ->
+improve(#{<<"msg">> := Msg}) ->
     [
     ].
