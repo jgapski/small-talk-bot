@@ -26,3 +26,11 @@ class SmallTalkAssets:
             "Super good",
             "Good"
         ]
+    @staticmethod
+    def question_starting_words() -> [str]:
+        return [
+            "What",
+            "Where",
+            "Which",
+            "How"
+        ]

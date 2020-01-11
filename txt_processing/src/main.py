@@ -16,7 +16,10 @@ for msg in incoming_msgs:
 
 outgoing_msgs = [
     "We need it ASAP, and no later than asap",
-    "We need it ASAP"
+    "We need it ASAP",
+    "What is love?",
+    "Where is my fucking money?"
+
     ]
 
 print("\nOutgoing\n")
