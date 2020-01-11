@@ -1,9 +1,5 @@
 import unittest
-import sys, os
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from src import ASAP_detector
+import ASAP_detector
 
 # from ASAP_detector import count_ASAP
 

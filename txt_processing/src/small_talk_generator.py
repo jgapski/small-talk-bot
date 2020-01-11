@@ -1,10 +1,12 @@
 import random
 import pyjokes
+
 from strsimpy.levenshtein import Levenshtein
+from small_talk_assets import SmallTalkAssets
 
 class SmallTalkGenerator:
     @staticmethod
-    def init_conversation() -> str:
+    def make_init_conversation_phrase() -> str:
         return random.choice(SmallTalkAssets.greetings())
 
     @staticmethod
@@ -16,21 +18,6 @@ class SmallTalkGenerator:
                 return True
         return False
 
-
-    # @staticmethod
-    # def ask_simple_question():
-    #     return "How are you?"
-
     @staticmethod
     def tell_a_joke():
         return pyjokes.get_joke()
-
-class SmallTalkAssets:
-    @staticmethod
-    def greetings() -> [str]:
-        return [
-            "Hey",
-            "Hi",
-            "Hello",
-            "Welcome"
-        ]
