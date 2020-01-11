@@ -35,21 +35,24 @@ consists_ASAP(Msg) ->
 
 init(_Args) -> {ok, []}.
 
-handle_call({add, Msg = #msg{ref = Ref}}, _From, State) ->
-    logger:error("Msg ~p added, State is ~p", [Msg, State]),
+handle_call({add, Msg = #msg{ref = Ref, from = From}}, _, State) ->
+    Reply = make_reply(From, State),
+    logger:error("Msg ~p added, State is ~p, Reply = ~p", [Msg, State, Reply]),
     erlang:send_after(?ASAP_TIMEOUT, self(), {del, Ref}),
-    {reply, [], [Msg | State]}.
+    {reply, Reply, [Msg | State]}.
+
+make_reply(From, State) ->
+    Msgs = lists:filter(fun(#msg{from = F}) -> F == From end, State),
+    case length(Msgs) > 2 of
+        true -> [<<"Consider using fewer ASAPs">>];
+        _ -> []
+    end.
 
 handle_info({del, Ref}, State) ->
-    NewState = lists:filter(fun (#msg{ref = R})
-				    when R == Ref ->
-				    false;
-				(_) -> true
-			    end,
-			    State),
-    logger:error("MsgRef ~p deleted, OldState = ~p, NewState "
-		"= ~p",
-		[Ref, State, NewState]),
+    NewState = lists:filter(fun (#msg{ref = R}) -> R =/= Ref
+			    end, State),
+    logger:error("MsgRef ~p deleted, OldStateLen = ~p, NewStateLen = ~p",
+		[Ref, length(State), length(NewState)]),
     {noreply, NewState}.
 
 handle_cast(_Msg, State) -> {noreply, State}.
