@@ -1,7 +1,6 @@
 import random
 import pyjokes
 
-from strsimpy.levenshtein import Levenshtein
 from small_talk_assets import SmallTalkAssets
 
 class SmallTalkGenerator:
@@ -10,14 +9,15 @@ class SmallTalkGenerator:
         return random.choice(SmallTalkAssets.greetings())
 
     @staticmethod
-    def is_init_conversation_phrase(textMessage: str) -> bool:
-        levenshtein = Levenshtein()
-        for greeting in SmallTalkAssets.greetings():
-            distance = levenshtein.distance(textMessage, greeting)
-            if distance <= 3:
-                return True
-        return False
+    def make_feeling_answer_phrase() -> str:
+        return random.choice(SmallTalkAssets.feeling_answer())
 
     @staticmethod
     def tell_a_joke():
         return pyjokes.get_joke()
+
+
+class OutgoingMessageImprover:
+    @staticmethod
+    def interpete(outgoingMessage: str) -> str:
+        pass
