@@ -42,6 +42,7 @@
  - Recommendations on overusing 'pushing' messages (like 'ASAP')
  - Adding a marking of a message's emotional tension (like 'positive:0.5, neutral:0.3, negative: 0.0')
  - Slack bot that send hidden recommendation for user on his message
+ - Messenger bot send suggestion for user per message
  
  ## Architecture
  The application consist of RESTful web service and slack bot. Since main functionality is located in service it's easy to extend application by writing new bots for different platforms in any language that suits your need. 
