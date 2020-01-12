@@ -13,7 +13,9 @@ class EchoBot(Client):
         print("{} from {} in {}".format(
             message_object, thread_id, thread_type.name))
 
-        if author_id == self.uid and not message_object.text.startswith("#suggestion"):
+        marker = "#SUGGESTION"
+
+        if author_id == self.uid and not message_object.text.startswith(marker):
             payload = {
                 "from": str(author_id),
                 "channel_name": str(thread_id),
@@ -27,7 +29,7 @@ class EchoBot(Client):
             suggestions = json_data['suggestions']
             print(suggestions)
             for suggestion in suggestions:
-                text = "#suggestion " + suggestion
+                text = marker + " " + suggestion
                 msg = Message(text=text)
                 self.send(msg, thread_id=thread_id, thread_type=thread_type)
 
