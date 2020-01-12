@@ -1,6 +1,6 @@
 -module(asap_rate_counter).
 
--record(msg, {from, content, ref}).
+-record(msg, {from, ref}).
 
 -behaviour(gen_server).
 
@@ -21,7 +21,7 @@ add_msg(From, Msg) ->
         "0\n" -> [];
         _ ->
             Ref = erlang:make_ref(),
-            NewMsg = #msg{from = From, content = Msg, ref = Ref},
+            NewMsg = #msg{from = From, ref = Ref},
             gen_server:call(?MODULE, {add, NewMsg})
     end.
 
@@ -39,15 +39,20 @@ handle_call({add, Msg = #msg{ref = Ref, from = From}}, _, State) ->
     {reply, Reply, [Msg | State]}.
 
 make_reply(From, State) ->
-    Msgs = lists:filter(fun(#msg{from = F}) -> F == From end, State),
+    Msgs = lists:filter(
+        fun(#msg{from = F}) ->
+            F == From
+        end, State),
     case length(Msgs) > 2 of
         true -> [<<"Consider using fewer ASAPs">>];
         _ -> []
     end.
 
 handle_info({del, Ref}, State) ->
-    NewState = lists:filter(fun (#msg{ref = R}) -> R =/= Ref
-			    end, State),
+    NewState = lists:filter(
+        fun (#msg{ref = R}) ->
+            R =/= Ref
+		end, State),
     {noreply, NewState}.
 
 handle_cast(_Msg, State) -> {noreply, State}.
