@@ -2,12 +2,12 @@
  
  Communication is one of the major factor of teams productivity. Our application targeting a wide range of people from diagnosed Asperger syndrome to people who just feel awkward and lost in conversation. So we decided to create a recommendation system that would analyze user's message and send him suggestions on how to enhance it. 
  Examples:
+ - emotion detection for people with low level of empathy
  - recommendation of using 'please' for request
  ```
  "Can I take it?" -> "Can I take it? Please"
  ```
  - suggestions with smalltalk phrases like 'how are you?' 'how was your holidays?' 'what's new?'
- - emotion detection for people with low level of empathy
  - in extreme cases - sarcasm and irony detection
  
  On contrary, there are people who happen to be overreacting and putting to 'emotional' words which might actually de demotivating and stressful for coworkers.
