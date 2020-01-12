@@ -20,7 +20,23 @@
  ```
  https://github.com/cjhutto/vaderSentiment
  ```
+ Basic examples:
  
+ ```
+#1
+ input:  Super, good job!
+ output: {'neg': 0.0, 'neu': 0.124, 'pos': 0.876, 'compound': 0.7959}
+         Your message is positive
+#2
+ input:  It was an awful day!
+ output: {'neg': 0.429, 'neu': 0.571, 'pos': 0.0, 'compound': -0.4588}
+         Your message is negative
+#3
+ input:  Nevermind
+ output: {'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}
+         Your message is neutral
+
+ ```
  
  ## Basic functionality
  - Recommendations on overusing 'pushing' messages (like 'ASAP')
