@@ -19,6 +19,14 @@ start_link() ->
 init([]) ->
     SupFlags = #{strategy => one_for_all, intensity => 0,
 		 period => 1},
-    ChildSpecs = [#{id => db,
-		    start => {db, start_link, []}}],
+    ChildSpecs = [
+        #{
+            id => asap_rate_counter,
+            start => {asap_rate_counter, start_link, []}
+        },
+        #{
+            id => msg_rate_limitation_counter,
+            start => {msg_rate_limitation_counter, start_link, []}
+        }
+    ],
     {ok, {SupFlags, ChildSpecs}}.

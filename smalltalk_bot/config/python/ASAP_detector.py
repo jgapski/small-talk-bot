@@ -10,7 +10,7 @@ def count_ASAP(messageText):
     return count
 
 arguments = str(sys.argv)
-a_msg = arguments.replace("['src/python/ASAP_detector.py', '", "")
+a_msg = arguments.replace("['config/python/ASAP_detector.py', '", "")
 msg = a_msg.replace("']", "")
 
 print(count_ASAP(msg))
