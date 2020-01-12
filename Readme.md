@@ -61,4 +61,17 @@
  ```
  ## Demo
 
+### Slack
+
 ![Demo gif](docs/demo.gif)
+
+### Messenger
+
+Measuring the emotion coefficient
+
+![Demo gif](docs/positive_emotion_recognition.gif)
+
+Detect ASAP overuse and spamming:
+
+![Demo gif](docs/limit_detection.gif)
+
