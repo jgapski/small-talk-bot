@@ -7,13 +7,20 @@
  "Can I take it?" -> "Can I take it? Please"
  ```
  - suggestions with smalltalk phrases like 'how are you?' 'how was your holidays?' 'what's new?'
- - sarcasm and irony detection
- - in extreme cases - emotion detection for people with low level of empathy
+ - emotion detection for people with low level of empathy
+ - in extreme cases - sarcasm and irony detection
  
  On contrary, there are people who happen to be overreacting and putting to 'emotional' words which might actually de demotivating and stressful for coworkers.
  Example:
  - recommendation to use less ASAP in a given time range
  - avoid questions like 'when it will be ready - tomorrow morning or evening?'
+ 
+ ## Measuring the emotion coefficient
+ To make a conversation easier to handle, we try to measure the "emotion coefficient" by calculating all the lexicon ratings (between -1 and 1) in a given message. In our detector, we used a external python library VaderSentiment. 
+ ```
+ https://github.com/cjhutto/vaderSentiment
+ ```
+ 
  
  ## Basic functionality
  - Recommendations on overusing 'pushing' messages (like 'ASAP')
